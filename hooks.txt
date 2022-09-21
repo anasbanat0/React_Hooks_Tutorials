@@ -1,0 +1,173 @@
+What are Hooks?
+Hooks are a new feature addition in React version 16.8 which allow you to use React features without having to write a class.
+
+Ex: State of a component
+Hooks don't work inside classes
+
+Why Hooks?
+Reason set 1
+
+Understand how this keyword works in JavaScript
+Rememeber to bind event handlers in class components
+Classes don't minify very well and make hot reloading very unreliable
+
+Reason set 2
+
+There is no particular way to reuse stateful component logic
+HOC and render props patterns do address this problem
+Makes the code harder to follow
+There is need a to share stateful logic in a better way
+
+Reason set 3
+
+Create components for complex scenarios such as data fetching and subscribing to events
+Related code is not organized in one place
+Ex: Data fetching - In componentDidMount and componentDidUpdate
+Ex: Event Listeners - In componentDidMount and componentWillUnmount
+Because of stateful logic - Cannot break components into smaller ones
+
+Noteworthy Points
+React version 16.8 or higher
+Completely opt in
+Hooks don't contain any breaking changes and the release is 100% backwards-compatible
+Classes won't be removed from React
+Can't use Hooks inside of a class component
+Hooks don't replace your existing knowledge of React concepts
+Instead, Hooks provide a more direct API to the React concepts you already know
+
+Rules of Hooks
+
+"Only Call Hooks at the Top Level"
+Don't call Hooks inside loops, conditions, or nested functions
+
+"Only Call Hooks from React Functions"
+Call them from within React functional components and not just any regular JavaScript function
+
+Summary - useState 
+The useState hook lets you add state to functional components
+In classes, the state is always an object
+With the useState hook, the state doesn't have to be an object.
+The useState hook returns an array with 2 elements.
+the first element is the current value of the state, and the second element is a state setter function.
+New state value depends on the previous state value? You can pass a function to the setter function.
+When dealing with objects or arrays, always make sure to spread your state variable and then call the setter function.
+
+useEffect
+Updating the document title to the current counter value
+
+componentDidMount() {
+  document.title = `You clicked ${this.state.count} times`;
+}
+
+componentDidUpdate() {
+  document.title = `You clicked ${this.state.count} times`;
+}
+
+Timer
+componentDidMount() {
+  this.interval = setInterval(this.tick, 1000)
+}
+
+componentWillUnmount() {
+  clearInterval(this.interval)
+}
+
+Combine the two side effects
+componentDidMount() {
+  document.title = `You clicked ${this.state.count} times`;
+  this.interval = setInterval(this.tick, 1000)
+}
+componentDidUpdate() {
+  document.title = `You clicked ${this.state.count} times`;
+}
+componentWillUnmount() {
+  clearInterval(this.interval)
+}
+
+The Effect Hook lets you perform side effects in functional components
+It is a close replacement for componentDidMount, componentDidUpdate and componentWillUnmount
+
+Context:
+Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+
+useReducer
+- useReducer is a hook that is used for state management
+- useReducer is related to reducer functions
+- useReducer(reducer, initialState)
+- reducer(currentState, action)
+- It is an alternative to useState
+- What's the difference?
+--- useState is built using useReducer
+When to useReducer vs useState?
+
+Hooks so far 
+- useState - state
+- useEffect - side effects
+- useContext - context API
+- useReducer - reducers
+
+useReducer with useContext
+- useReducer - Local state management
+- Share state between components - Global state management
+- useReduer + useContext
+
+What is useCallback Hook?
+useCallback is a hook that will return a memoized version of the callback function that only changes if one of the dependencies has changed.
+
+Why is useCallback Hook?
+It is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders.
+
+Custom Hooks
+- A custom Hook is basically a JavaScript function whose name starts with "use'.
+- A custom hook can also call other Hooks if required
+
+Why do we need to custom hook?
+- Share logic - Alternative to HOCs and Render Props
+
+How to create custom hooks?
+
+
+Interviews Querstions for React and Redux
+- React
+-- What do you like and dislike about React?
+--- Love unidrectional flow from parent to child and the fact that React is pretty much JavaScript
+--- Disliked JSX
+-- Conditional rendering and List rendering
+--- What is the signifance of having the key prop when rendering a list of elements
+--- What is a potential bug that you can introduce when using index as key
+-- Class component's lifecycle methods
+--- There will always be legacy code that you need to maintain
+--- Learn the mounting phase, the updation phase and the unmounting phase methods
+--- Order of invocation a brief description of when you'd use each one of them
+-- Context API
+--- What is prop drilling, how can you overcome that using the context API
+-- Hooks
+--- What was the need for hooks?
+--- useState, useEffect and useContext
+-- Optimization
+--- Pure components
+--- memo
+--- useMemo and useCallback
+-- How to share logic across components?
+--- Higher order components
+--- Render props pattern
+--- Custom hooks
+-- What are some of the packages that you use along with React?
+--- Styling
+--- Routing
+--- Form handling
+--- State management
+--- CRA vs Custom webpack config
+
+- Redux
+-- What is Redux?
+-- How do you decide whether to choose Context API or Redux?
+-- What is the redux store?
+-- what are actions?
+-- What are action creators?
+-- what are reducers?
+-- How the control flows between these different parts?
+-- what exactly does the connect function do from the react-redux library?
+-- What do mapStateToProps and mapDispatchToProps actually do?
+-- Why should you dispatch an action to update the state and not update store directly?
+-- In a reducer, why should you return a new object as state and not modify the existing state object?
